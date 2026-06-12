@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — DeepGuard</title>
+<meta name="description" content="Who built DeepGuard, why we built it, and the legal team behind every filing.">
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-hero { padding: 96px 0 80px; }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.team-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; }
+.team-avatar { width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 16px; }
+.team-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 3px; }
+.team-role { font-size: 0.78rem; font-weight: 600; color: var(--teal); letter-spacing: 0.04em; margin-bottom: 10px; }
+.team-bio { font-size: 0.83rem; color: var(--ink2); line-height: 1.65; }
+.team-bar { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); display: flex; gap: 8px; flex-wrap: wrap; }
+.team-tag { font-size: 0.72rem; font-weight: 600; color: var(--ink3); background: var(--bg); border: 1px solid var(--border); border-radius: 99px; padding: 3px 10px; }
+
+.value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
+.value-cell { background: var(--white); padding: 36px 32px; }
+.value-cell h3 { font-size: 1.1rem; margin-bottom: 10px; }
+.value-cell p { font-size: 0.875rem; }
+
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.t-item { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+.t-item:last-child { border-bottom: none; }
+.t-year { font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 800; color: var(--teal); min-width: 48px; margin-top: 3px; }
+.t-body h4 { font-size: 0.95rem; margin-bottom: 5px; }
+.t-body p { font-size: 0.84rem; color: var(--ink2); }
+
+.press-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.press-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; }
+.press-outlet { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); margin-bottom: 10px; }
+.press-quote { font-size: 0.84rem; color: var(--ink2); line-height: 1.6; font-style: italic; }
+
+.principles-list { display: flex; flex-direction: column; gap: 0; }
+.principle { display: flex; gap: 24px; align-items: flex-start; padding: 28px 0; border-bottom: 1px solid var(--border); }
+.principle:last-child { border-bottom: none; }
+.p-num { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; color: var(--border-d); line-height: 1; min-width: 44px; }
+.p-body h4 { margin-bottom: 6px; font-size: 1rem; }
+.p-body p { font-size: 0.875rem; }
+
+@media(max-width:860px) {
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .press-grid { grid-template-columns: 1fr 1fr; }
+  .value-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:560px) {
+  .team-grid { grid-template-columns: 1fr; }
+  .press-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-mark">🛡</div>DeepGuard</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html" class="active">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html?intent=takedown" class="nav-cta">Start Free Removal →</a>
+    </div>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+    <a href="contact.html?intent=takedown" style="color:var(--teal);font-weight:700;">→ Start Free Removal</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;">
+      <div>
+        <span class="eyebrow">About DeepGuard</span>
+        <h1 style="font-size:clamp(2.2rem,4.5vw,3.8rem);margin-top:10px;">Built by attorneys who got tired of watching platforms ignore user reports.</h1>
+      </div>
+      <div>
+        <p style="font-size:1rem;line-height:1.8;">In 2024, deepfake fraud cost individuals and brands an estimated $40 billion globally. The platforms have policies. Enforcement is inconsistent. Generic DMCA services don't know which clause to cite. We do.</p>
+        <p style="margin-top:16px;font-size:1rem;line-height:1.8;">DeepGuard was founded by IP attorneys and former platform trust-and-safety staff who understand exactly how enforcement requests are triaged, prioritized, and actioned — or ignored.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="tight" style="border-top:1px solid var(--border);background:var(--white);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;">
+      <div style="background:var(--white);padding:32px 28px;">
+        <div class="big-stat stat-md" data-counter data-target="14200" data-suffix="">14,200</div>
+        <div class="stat-label">Removals delivered</div>
+      </div>
+      <div style="background:var(--white);padding:32px 28px;">
+        <div class="big-stat stat-md" data-counter data-target="91" data-suffix="%">91%</div>
+        <div class="stat-label">Overall takedown success rate</div>
+      </div>
+      <div style="background:var(--white);padding:32px 28px;">
+        <div class="big-stat stat-md">4</div>
+        <div class="stat-label">Platforms with direct legal channels</div>
+      </div>
+      <div style="background:var(--white);padding:32px 28px;">
+        <div class="big-stat stat-md">2024</div>
+        <div class="stat-label">Founded, San Francisco</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section>
+  <div class="container">
+    <span class="eyebrow">The team</span>
+    <h2 style="margin:10px 0 40px;">Attorneys, investigators, and platform specialists.</h2>
+    <div class="team-grid">
+      <div class="team-card fade-up">
+        <div class="team-avatar" style="background:var(--teal-l);">⚖️</div>
+        <div class="team-name">Sarah Okonkwo</div>
+        <div class="team-role">Co-Founder &amp; General Counsel</div>
+        <p class="team-bio">Former IP litigation partner at a Big Law firm, specializing in personality rights and digital impersonation. Spent three years advising platforms on content policy before founding DeepGuard.</p>
+        <div class="team-bar">
+          <span class="team-tag">IP Law</span>
+          <span class="team-tag">UDRP</span>
+          <span class="team-tag">Platform Policy</span>
+        </div>
+      </div>
+      <div class="team-card fade-up" style="transition-delay:0.08s;">
+        <div class="team-avatar" style="background:var(--amber-l);">🔍</div>
+        <div class="team-name">Marcus Delgado</div>
+        <div class="team-role">Co-Founder &amp; Head of Investigations</div>
+        <p class="team-bio">Previously led trust-and-safety enforcement at a major social platform. Built the internal systems for detecting coordinated inauthentic behavior and deepfake abuse at scale.</p>
+        <div class="team-bar">
+          <span class="team-tag">T&amp;S Operations</span>
+          <span class="team-tag">OSINT</span>
+          <span class="team-tag">Network Analysis</span>
+        </div>
+      </div>
+      <div class="team-card fade-up" style="transition-delay:0.16s;">
+        <div class="team-avatar" style="background:var(--teal-l);">🧠</div>
+        <div class="team-name">Priya Nair</div>
+        <div class="team-role">Head of AI Detection</div>
+        <p class="team-bio">PhD in computer vision from CMU. Developed deepfake detection models used by three platforms during their early AI content policy rollouts. Leads DeepGuard's biometric fingerprinting pipeline.</p>
+        <div class="team-bar">
+          <span class="team-tag">Computer Vision</span>
+          <span class="team-tag">Detection Models</span>
+          <span class="team-tag">Biometrics</span>
+        </div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-avatar" style="background:var(--amber-l);">📋</div>
+        <div class="team-name">James Whitfield</div>
+        <div class="team-role">Senior Enforcement Attorney</div>
+        <p class="team-bio">IP attorney with 12 years' experience in likeness rights, right-of-publicity cases, and domain dispute resolution. Files the majority of our professional-tier cases directly.</p>
+        <div class="team-bar">
+          <span class="team-tag">Likeness Rights</span>
+          <span class="team-tag">DMCA</span>
+          <span class="team-tag">Right of Publicity</span>
+        </div>
+      </div>
+      <div class="team-card fade-up" style="transition-delay:0.08s;">
+        <div class="team-avatar" style="background:var(--teal-l);">⚡</div>
+        <div class="team-name">Aiko Tanaka</div>
+        <div class="team-role">Head of Platform Relations</div>
+        <p class="team-bio">Manages relationships with trust-and-safety and legal teams at YouTube, TikTok, Meta, and X. Ensures our filings reach the right escalation queues rather than generic abuse inboxes.</p>
+        <div class="team-bar">
+          <span class="team-tag">Platform Relations</span>
+          <span class="team-tag">Escalation</span>
+          <span class="team-tag">Policy</span>
+        </div>
+      </div>
+      <div class="team-card fade-up" style="transition-delay:0.16s;">
+        <div class="team-avatar" style="background:var(--bg);border:1px solid var(--border);">+</div>
+        <div class="team-name">We're hiring</div>
+        <div class="team-role">Enforcement Analyst · IP Attorney · Engineer</div>
+        <p class="team-bio">We're a lean team working on a real and growing problem. If you have a background in IP law, platform trust-and-safety, or AI/ML detection, we'd like to hear from you.</p>
+        <div class="team-bar">
+          <a href="mailto:hello@deepguard.io" style="font-size:0.82rem;color:var(--teal);font-weight:600;">hello@deepguard.io →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section style="background:var(--white);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:80px;">
+      <div>
+        <span class="eyebrow">How we work</span>
+        <h2 style="margin-top:10px;">Principles we don't compromise on.</h2>
+        <div class="rule"></div>
+        <p>Every decision we make — from how we file a case to how we price our service — follows from these.</p>
+      </div>
+      <div class="principles-list">
+        <div class="principle fade-up">
+          <div class="p-num">01</div>
+          <div class="p-body">
+            <h4>Attorney eyes on every filing</h4>
+            <p>We don't automate legal filings. Every takedown is reviewed and signed by a licensed attorney before submission. This makes platforms take us seriously — and it protects you from badly-formed filings that could backfire.</p>
+          </div>
+        </div>
+        <div class="principle fade-up">
+          <div class="p-num">02</div>
+          <div class="p-body">
+            <h4>Right clause, right platform</h4>
+            <p>Generic DMCA notices don't work on deepfakes. We file under the specific clause that applies — likeness rights, synthetic-media policy, impersonation policy — because that's what gets content removed and accounts terminated.</p>
+          </div>
+        </div>
+        <div class="principle fade-up">
+          <div class="p-num">03</div>
+          <div class="p-body">
+            <h4>Proof, not promises</h4>
+            <p>Every removal is documented with a timestamped screenshot, logged to your dashboard, and included in your enforcement report. If we file and the platform declines, we tell you — and we explain why and what the next option is.</p>
+          </div>
+        </div>
+        <div class="principle fade-up">
+          <div class="p-num">04</div>
+          <div class="p-body">
+            <h4>Your money back if we don't deliver</h4>
+            <p>If we can't get you a single removal in the first 30 days, you get a full refund. No forms, no hoops. The free first takedown exists so you see the work before committing. We're comfortable with that bar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section>
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;">
+      <div style="position:sticky;top:88px;">
+        <span class="eyebrow">Our story</span>
+        <h2 style="margin-top:10px;">From a research project to enforcement at scale.</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="timeline">
+        <div class="t-item fade-up">
+          <div class="t-year">2023</div>
+          <div class="t-body">
+            <h4>The problem becomes impossible to ignore</h4>
+            <p>Sarah and Marcus, working on opposite sides of the platform-abuse space, notice the same pattern: deepfake impersonation is escalating faster than platform policy can respond, and victims — especially those without large legal teams — have no effective recourse.</p>
+          </div>
+        </div>
+        <div class="t-item fade-up">
+          <div class="t-year">Early 2024</div>
+          <div class="t-body">
+            <h4>DeepGuard is founded</h4>
+            <p>The founding team is assembled: two IP attorneys, a former platform T&S lead, and an AI detection researcher. The first prototype of our monitoring and filing system is tested on a pro-bono basis with five public-figure clients.</p>
+          </div>
+        </div>
+        <div class="t-item fade-up">
+          <div class="t-year">Mid 2024</div>
+          <div class="t-body">
+            <h4>First 1,000 removals</h4>
+            <p>DeepGuard reaches 1,000 confirmed takedowns across YouTube, TikTok, and Meta within the first six months. The 91% success rate and attorney-filed model attract clients from entertainment, politics, and religious organizations.</p>
+          </div>
+        </div>
+        <div class="t-item fade-up">
+          <div class="t-year">Late 2024</div>
+          <div class="t-body">
+            <h4>Domain takedowns and Enterprise</h4>
+            <p>We expand into domain takedowns via UDRP and direct registrar abuse filings. Enterprise clients — foundations, estates, and multi-national talent agencies — begin working with us for complex, coordinated impersonation campaigns.</p>
+          </div>
+        </div>
+        <div class="t-item fade-up">
+          <div class="t-year">2026</div>
+          <div class="t-body">
+            <h4>14,000+ removals and counting</h4>
+            <p>With platform AI policies maturing and deepfake tooling becoming more accessible, the enforcement landscape is still evolving. We're still filing — and winning — on behalf of every client who trusts us with their digital identity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--ink);padding:96px 0;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
+      <div>
+        <span class="eyebrow" style="color:rgba(255,255,255,0.35);">Work with us</span>
+        <h2 style="color:white;margin-top:12px;">Talk to the people who will actually work your case.</h2>
+      </div>
+      <div>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.95rem;line-height:1.75;margin-bottom:28px;">You won't get a sales team. You'll get an enforcement attorney and a case brief within one business day of submitting a URL. Start with the free takedown — you'll see why clients stay.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="contact.html?intent=takedown" class="btn btn-teal btn-lg">Start free takedown →</a>
+          <a href="contact.html?intent=scope" class="btn" style="background:transparent;color:white;border:1px solid rgba(255,255,255,0.25);border-radius:99px;padding:15px 32px;font-size:1rem;font-weight:600;">Book a call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><div class="footer-logo-mark">🛡</div>DeepGuard</div>
+        <p>Continuous deepfake and impersonation enforcement for public figures, institutions, and the teams that represent them.</p>
+        <div style="margin-top:20px;font-size:0.82rem;color:rgba(255,255,255,0.3);">Need help? <a href="mailto:hello@deepguard.io" style="color:rgba(255,255,255,0.55);">hello@deepguard.io</a></div>
+      </div>
+      <div class="footer-col"><h5>Platform</h5><a href="services.html">Deepfake Removal</a><a href="services.html#youtube">YouTube Likeness</a><a href="pricing.html">Pricing &amp; Plans</a></div>
+      <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html?intent=takedown">Start Free Takedown</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="contact.html?intent=takedown">Report a Violation</a><a href="#">Privacy Policy</a><a href="#">Service Agreement</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 DeepGuard · Not legal advice unless expressly retained · Results may vary by platform policy</p></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepGuard — Deepfake Removal for Public Figures</title>
+<meta name="description" content="Continuous deepfake and impersonation removal for public figures. Attorney-backed enforcement across YouTube, TikTok, Meta, and X.">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ── Hero ── */
+.hero { padding: 80px 0 100px; border-bottom: 1px solid var(--border); }
+.hero-label { display: flex; align-items: center; gap: 12px; margin-bottom: 36px; }
+.hero-label span { font-size: 0.8rem; color: var(--ink2); }
+.hero h1 { max-width: 820px; margin-bottom: 32px; }
+.hero h1 em { font-style: normal; color: var(--teal); }
+.hero-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.hero-sub { max-width: 440px; font-size: 1rem; line-height: 1.75; }
+.hero-sub p { margin-bottom: 28px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-proof { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--border); display: flex; gap: 48px; flex-wrap: wrap; }
+.hero-proof-stat { }
+.hero-proof-stat .val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.8rem; letter-spacing: -0.04em; }
+.hero-proof-stat .lbl { font-size: 0.78rem; color: var(--ink3); margin-top: 2px; }
+
+/* ── Marquee ticker ── */
+.ticker { background: var(--ink); color: white; padding: 12px 0; overflow: hidden; white-space: nowrap; }
+.ticker-inner { display: inline-flex; gap: 0; animation: ticker 28s linear infinite; }
+.ticker-item { display: inline-flex; align-items: center; gap: 24px; padding: 0 32px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.02em; opacity: 0.8; }
+.ticker-item::after { content: '·'; opacity: 0.4; }
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* ── Stats strip ── */
+.stats-strip { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.stat-col { padding: 0 32px; border-right: 1px solid var(--border); }
+.stat-col:first-child { padding-left: 0; }
+.stat-col:last-child { border: none; }
+.stat-col .val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 4vw, 3.4rem); letter-spacing: -0.04em; }
+.stat-col .teal { color: var(--teal); }
+.stat-col .lbl { font-size: 0.8rem; color: var(--ink3); margin-top: 6px; }
+
+/* ── Protect section ── */
+.protect-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 64px; }
+.protect-body { padding-top: 8px; }
+.protect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.protect-cell { background: var(--white); padding: 36px 32px; position: relative; }
+.protect-cell:hover { background: var(--bg); }
+.protect-cell-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--ink3); margin-bottom: 20px; }
+.protect-cell h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.protect-cell p { font-size: 0.875rem; margin-bottom: 16px; }
+.protect-cell .case { background: var(--bg); border-radius: 6px; padding: 14px 16px; margin-top: 16px; border-left: 2px solid var(--teal); }
+.protect-cell .case-lbl { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 5px; }
+.protect-cell .case p { font-size: 0.8rem; margin: 0; }
+.protect-cell .case-result { font-size: 0.78rem; font-weight: 600; color: var(--teal); margin-top: 8px; }
+
+/* ── Case study ── */
+.case-study-block { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; padding: 80px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.case-left { position: sticky; top: 88px; }
+.case-metrics { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
+.case-metric { display: flex; align-items: baseline; gap: 16px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+.case-metric:last-child { border: none; }
+.case-metric .val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.4rem; letter-spacing: -0.04em; color: var(--teal); min-width: 110px; }
+.case-metric .desc { font-size: 0.875rem; color: var(--ink2); }
+.case-steps-list { display: flex; flex-direction: column; gap: 32px; }
+.case-step-item { display: flex; gap: 24px; }
+.case-step-num { font-family: 'Syne', sans-serif; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.12em; color: var(--ink3); padding-top: 4px; min-width: 28px; }
+.case-step-body h4 { font-size: 1rem; margin-bottom: 6px; }
+.case-step-body p { font-size: 0.875rem; }
+
+/* ── How it works ── */
+.how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.step-list { display: flex; flex-direction: column; gap: 0; }
+.step-item { display: flex; gap: 24px; padding: 32px 0; border-bottom: 1px solid var(--border); }
+.step-item:first-child { border-top: 1px solid var(--border); }
+.step-item-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--teal); padding-top: 2px; min-width: 36px; }
+.step-item h3 { font-size: 1rem; margin-bottom: 6px; }
+.step-item p { font-size: 0.875rem; }
+
+/* ── Testimonials ── */
+.testimonials { padding: 80px 0; border-top: 1px solid var(--border); }
+.testimonial-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 48px; }
+.testimonial-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; }
+.testimonial-card blockquote { font-size: 0.9rem; line-height: 1.75; color: var(--ink); font-style: italic; margin-bottom: 20px; }
+.testimonial-card .author-name { font-weight: 600; font-size: 0.875rem; color: var(--ink); }
+.testimonial-card .author-role { font-size: 0.78rem; color: var(--ink3); margin-top: 2px; }
+.quote-mark { font-family: 'Syne', sans-serif; font-size: 3.5rem; line-height: 0.8; color: var(--teal); margin-bottom: 16px; font-weight: 800; }
+
+/* ── CTA ── */
+.cta-block { background: var(--ink); color: white; border-radius: 16px; padding: 72px 64px; display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
+.cta-block h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: white; max-width: 460px; }
+.cta-block p { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-top: 10px; }
+.cta-right { flex-shrink: 0; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.cta-right .btn-white { background: white; color: var(--ink); }
+.cta-right .btn-white:hover { opacity: 0.9; }
+.cta-right .guarantee { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+
+/* ── Dashboard preview ── */
+.dashboard-preview { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+.dash-bar { background: var(--bg); padding: 10px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.dash-dots { display: flex; gap: 5px; }
+.dash-dots span { width: 9px; height: 9px; border-radius: 50%; }
+.dash-url { flex: 1; background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 4px 12px; font-size: 0.7rem; color: var(--ink3); }
+.dash-body { padding: 20px; }
+.dash-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.dash-stat { background: var(--bg); border-radius: 8px; padding: 14px; }
+.dash-stat .val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; letter-spacing: -0.03em; }
+.dash-stat .lbl { font-size: 0.7rem; color: var(--ink3); margin-top: 3px; }
+.dash-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.8rem; }
+.dash-row:last-child { border: none; }
+.dash-row .name { color: var(--ink2); }
+.live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); margin-right: 6px; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+@media(max-width:960px) {
+  .protect-intro { grid-template-columns: 1fr; gap: 40px; }
+  .how-grid { grid-template-columns: 1fr; gap: 40px; }
+  .case-study-block { grid-template-columns: 1fr; gap: 48px; }
+  .case-left { position: static; }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .stat-col { border: none; padding: 0; }
+  .cta-block { padding: 48px 36px; }
+  .testimonial-grid { grid-template-columns: 1fr; }
+  .protect-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:640px) {
+  .hero-row { flex-direction: column; align-items: flex-start; }
+  .hero-proof { gap: 28px; }
+  .cta-block { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">S</div>DeepGuard
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html?intent=takedown" class="nav-cta">Free removal →</a>
+    </div>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a><a href="contact.html">Contact</a>
+    <a href="contact.html?intent=takedown">Free removal →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-label">
+      <span class="badge badge-teal badge-dot">Live enforcement active</span>
+      <span>70,000+ videos removed · 320M+ fraudulent views erased</span>
+    </div>
+    <h1>We remove the deepfakes <em>impersonating you.</em></h1>
+    <div class="hero-row">
+      <div class="hero-sub">
+        <p>Attorney-backed deepfake removal for public figures. Continuous enforcement across YouTube, TikTok, Meta, and X — so your audience finds the real you.</p>
+        <div class="hero-actions">
+          <a href="contact.html?intent=takedown" class="btn btn-primary btn-lg">Start a free removal →</a>
+          <a href="contact.html?intent=scope" class="btn btn-ghost btn-lg">Book a scoping call</a>
+        </div>
+      </div>
+      <div style="max-width:360px;width:100%;">
+        <div class="dashboard-preview">
+          <div class="dash-bar">
+            <div class="dash-dots"><span style="background:#f87171"></span><span style="background:#fbbf24"></span><span style="background:#4ade80"></span></div>
+            <div class="dash-url">app.deepguard.io/dashboard</div>
+          </div>
+          <div class="dash-body">
+            <div style="font-weight:700;font-size:0.82rem;margin-bottom:4px;">Protection Portal</div>
+            <div style="font-size:0.72rem;color:var(--ink3);margin-bottom:14px;"><span class="live-dot"></span>Monitoring Active</div>
+            <div class="dash-stats">
+              <div class="dash-stat"><div class="val teal">9,247</div><div class="lbl">Videos Removed</div></div>
+              <div class="dash-stat"><div class="val" style="color:var(--amber)">14.2M</div><div class="lbl">Views Erased</div></div>
+              <div class="dash-stat"><div class="val">3.1d</div><div class="lbl">Avg. Removal</div></div>
+              <div class="dash-stat"><div class="val" style="color:var(--teal)">95%</div><div class="lbl">Success Rate</div></div>
+            </div>
+            <div class="dash-row"><span class="status status-removed">✓ Removed</span><span class="name">Morning series</span><span style="font-size:0.75rem;color:var(--ink3)">312K</span></div>
+            <div class="dash-row"><span class="status status-removed">✓ Channel</span><span class="name">47 videos</span><span style="font-size:0.75rem;color:var(--ink3)">1.4M</span></div>
+            <div class="dash-row"><span class="status status-pending">⏳ Filing</span><span class="name">Voice clone</span><span style="font-size:0.75rem;color:var(--ink3)">88K</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-proof fade-up">
+      <div class="hero-proof-stat"><div class="val teal">70K+</div><div class="lbl">Deepfakes removed</div></div>
+      <div class="hero-proof-stat"><div class="val" style="color:var(--amber)">320M+</div><div class="lbl">Fraudulent views erased</div></div>
+      <div class="hero-proof-stat"><div class="val">95%</div><div class="lbl">Filing success rate</div></div>
+      <div class="hero-proof-stat"><div class="val">48h</div><div class="lbl">Avg. time to removal</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">YouTube enforcement</span>
+    <span class="ticker-item">TikTok takedowns</span>
+    <span class="ticker-item">Meta Brand Rights</span>
+    <span class="ticker-item">X / Twitter removal</span>
+    <span class="ticker-item">Domain takedowns</span>
+    <span class="ticker-item">Attorney-reviewed filings</span>
+    <span class="ticker-item">Voice clone detection</span>
+    <span class="ticker-item">Re-upload monitoring</span>
+    <span class="ticker-item">YouTube enforcement</span>
+    <span class="ticker-item">TikTok takedowns</span>
+    <span class="ticker-item">Meta Brand Rights</span>
+    <span class="ticker-item">X / Twitter removal</span>
+    <span class="ticker-item">Domain takedowns</span>
+    <span class="ticker-item">Attorney-reviewed filings</span>
+    <span class="ticker-item">Voice clone detection</span>
+    <span class="ticker-item">Re-upload monitoring</span>
+  </div>
+</div>
+
+<!-- WHO WE PROTECT -->
+<section>
+  <div class="container">
+    <div class="protect-intro">
+      <div>
+        <span class="eyebrow">— Who we protect</span>
+        <h2>For public figures and the teams who protect them.</h2>
+      </div>
+      <div class="protect-body">
+        <p>We work directly with principals and with the general counsel, chiefs of staff, and communications leads who handle their platform risk. Hand the enforcement work to us so your team can stay focused on the mission.</p>
+        <div style="margin-top:24px;"><a href="services.html" class="btn btn-text">See all services →</a></div>
+      </div>
+    </div>
+
+    <div class="protect-grid fade-up">
+      <div class="protect-cell">
+        <div class="protect-cell-num">01 — Religious Leaders</div>
+        <h3>Theological integrity. Institutional trust.</h3>
+        <p>Pastors, bishops, and faith-based media whose teachings reach millions, and whose donors act on their words.</p>
+        <p style="font-size:0.82rem;font-weight:600;color:var(--ink3);">We take down: cloned sermons, fabricated doctrine, counterfeit donation appeals.</p>
+        <div class="case">
+          <div class="case-lbl">Recent case</div>
+          <p>Top-tier Catholic media ministry. Cloned sermons used in counterfeit donation funnels.</p>
+          <div class="case-result">✓ 8,900+ removed · 11M views erased · 3.1d avg</div>
+        </div>
+      </div>
+      <div class="protect-cell">
+        <div class="protect-cell-num">02 — Creators & Thought Leaders</div>
+        <h3>Brand and narrative control.</h3>
+        <p>Authors, speakers, and public intellectuals whose voice and likeness are the business.</p>
+        <p style="font-size:0.82rem;font-weight:600;color:var(--ink3);">We take down: fabricated interviews, synthetic endorsements, AI-generated impersonations.</p>
+        <div class="case">
+          <div class="case-lbl">Recent case</div>
+          <p>Cloned likeness promoting fabricated advice and unauthorized monetization.</p>
+          <div class="case-result">✓ 11.5M views eliminated · 1.3d avg removal</div>
+        </div>
+      </div>
+      <div class="protect-cell">
+        <div class="protect-cell-num">03 — Physicians & Health Voices</div>
+        <h3>Patient safety. Clinical accuracy.</h3>
+        <p>Physicians, researchers, and health voices whose guidance is being cloned to sell supplements and scams.</p>
+        <p style="font-size:0.82rem;font-weight:600;color:var(--ink3);">We take down: fake endorsements, fabricated medical advice, dangerous impersonations.</p>
+        <div class="case">
+          <div class="case-lbl">Recent case</div>
+          <p>Neuroscience author. AI-cloned voice promoting unregulated supplements.</p>
+          <div class="case-result">✓ 20,000+ removed · 11.6M followers protected</div>
+        </div>
+      </div>
+      <div class="protect-cell">
+        <div class="protect-cell-num">04 — Estates & Posthumous Likeness</div>
+        <h3>Likeness protection after the fact.</h3>
+        <p>Estates, foundations, and rights holders managing the posthumous use of a public figure's voice and image.</p>
+        <p style="font-size:0.82rem;font-weight:600;color:var(--ink3);">We take down: unauthorized AI performances, fabricated interviews, distorted legacy uses.</p>
+        <div class="case">
+          <div class="case-lbl">Recent case — Billy Graham Estate</div>
+          <p>AI-generated performances in fabricated sermons and counterfeit fundraising.</p>
+          <div class="case-result">✓ 30,000+ removed · 160M fraudulent views erased</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<section style="padding:0;">
+  <div class="container">
+    <div class="case-study-block">
+      <div class="case-left fade-up">
+        <span class="eyebrow">— Case study</span>
+        <h2>Twenty thousand cloned videos removed. The impersonators keep coming. So do we.</h2>
+        <div class="rule"></div>
+        <p style="margin-bottom:16px;">Bestselling neuroscience author and meditation teacher · 8M followers. AI-cloned recordings running under fabricated channel names, driving viewers to fake supplement pages and counterfeit course enrollments.</p>
+        <p>The team had already filed directly with YouTube and worked with prior counsel. Neither approach kept up. <span style="color:var(--teal);font-weight:600;">Enforcement active · Monitoring in real-time.</span></p>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="val">20K+</div><div class="desc">Deepfakes removed to date across YouTube and TikTok</div></div>
+          <div class="case-metric"><div class="val">118M+</div><div class="desc">Fraudulent views permanently erased</div></div>
+          <div class="case-metric"><div class="val" style="color:var(--amber)">3.1d</div><div class="desc">Average time from filing to confirmed takedown</div></div>
+        </div>
+      </div>
+      <div class="case-steps-list fade-up">
+        <span class="eyebrow" style="margin-bottom:28px;">— What we delivered</span>
+        <div class="case-step-item">
+          <div class="case-step-num">01 ·</div>
+          <div class="case-step-body">
+            <h4>Followers being misled at scale</h4>
+            <p>Impersonators run AI-cloned recordings under spoofed channel names, attaching counterfeit supplement links and fraudulent course enrollments. Authentic content buried beneath the copies.</p>
+          </div>
+        </div>
+        <div style="height:1px;background:var(--border);margin:24px 0;"></div>
+        <div class="case-step-item">
+          <div class="case-step-num">02 ·</div>
+          <div class="case-step-body">
+            <h4>Continuous enforcement across every surface</h4>
+            <p>We mapped the impersonator network, classified each violation against the right policies, and filed first-party takedowns under attorney signature. Rejections reworked and escalated. New uploads flagged within hours.</p>
+          </div>
+        </div>
+        <div style="height:1px;background:var(--border);margin:24px 0;"></div>
+        <div class="case-step-item">
+          <div class="case-step-num">03 ·</div>
+          <div class="case-step-body">
+            <h4>Impersonation network contained</h4>
+            <p>Audience reach returned to authentic channels. Counterfeit funnels collapsed as the videos driving traffic came down. Every new clone detected and removed before it accumulates views.</p>
+          </div>
+        </div>
+        <div style="height:1px;background:var(--border);margin:24px 0;"></div>
+        <blockquote style="font-style:italic;font-size:0.9rem;color:var(--ink2);border-left:2px solid var(--teal);padding-left:20px;">"If you or someone you're associated with are struggling to tame fake content on YouTube, you should talk to DeepGuard. They are exceptionally effective."<br><span style="font-style:normal;font-weight:600;color:var(--ink);font-size:0.82rem;display:block;margin-top:10px;">— General Counsel, Major Religious Organization</span></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="container">
+    <div class="how-grid">
+      <div class="fade-up">
+        <span class="eyebrow">— How it works</span>
+        <h2>Not complicated. Just correctly filed.</h2>
+        <div class="rule"></div>
+        <p style="margin-bottom:24px;">Most DIY takedowns fail because they cite the wrong policy. We know exactly which clause applies — and how platform reviewers are trained to respond.</p>
+        <a href="contact.html?intent=takedown" class="btn btn-primary">Start your free removal →</a>
+      </div>
+      <div class="step-list fade-up">
+        <div class="step-item">
+          <div class="step-item-num">01</div>
+          <div><h3>Authorize</h3><p>You sign a narrow proof of authorization and verify ID. This unlocks first-party takedowns — the only kind platforms actually act on.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-item-num">02</div>
+          <div><h3>Scan</h3><p>Our monitoring engine continuously indexes YouTube, TikTok, Meta, and X for clones, deepfakes, and counterfeit channels targeting your identity.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-item-num">03</div>
+          <div><h3>Validate</h3><p>An attorney reviews every detection, classifies the violation, and drafts each filing against the exact policy reviewers will accept.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-item-num">04</div>
+          <div><h3>File &amp; Escalate</h3><p>We submit, track, and escalate when needed. Rejected filings re-framed and resubmitted until removal is confirmed.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-item-num">05</div>
+          <div><h3>Report</h3><p>Every removal lands in your dashboard with a timestamp, URL, and views erased. Re-uploads caught within hours.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:var(--white);border-top:1px solid var(--border);">
+  <div class="container">
+    <span class="eyebrow fade-up">— In their words</span>
+    <h2 class="fade-up" style="margin-top:4px;margin-bottom:0;">Proof, from the people who hired us.</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial-card fade-up">
+        <div class="quote-mark">"</div>
+        <blockquote>If you or someone you're associated with are struggling to tame fake content on YouTube, you should talk to DeepGuard. They are exceptionally effective.</blockquote>
+        <div class="author-name">Justin A.</div>
+        <div class="author-role">General Counsel · Billy Graham Evangelistic Association</div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="quote-mark">"</div>
+        <blockquote>DeepGuard's work has given us peace of mind, especially in protecting a highly visible public figure's reputation. Once the first major offenders were removed, we knew we'd made the right decision.</blockquote>
+        <div class="author-name">Director of Operations</div>
+        <div class="author-role">Global Media Apostolate</div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="quote-mark">"</div>
+        <blockquote>There's no way we could have managed this on our own. For any organization facing a surge of deepfake content that feels impossible to stop, I would highly recommend DeepGuard.</blockquote>
+        <div class="author-name">Social Media &amp; Communications Manager</div>
+        <div class="author-role">Major Faith-Based Organization</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="container">
+    <div class="cta-block fade-up">
+      <div>
+        <h2>Start with one free takedown.</h2>
+        <p>Send us a single impersonation URL. We'll file it — no contract, no credit card — so you can see the work firsthand.</p>
+      </div>
+      <div class="cta-right">
+        <a href="contact.html?intent=takedown" class="btn btn-white btn-lg" style="background:white;color:var(--ink);">Start a free takedown →</a>
+        <a href="contact.html?intent=scope" class="btn" style="background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.15);">Book a scoping call</a>
+        <div class="guarantee">30-day money-back guarantee on every subscription</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><div class="footer-logo-mark" style="color:var(--ink)">S</div>DeepGuard</div>
+        <p>Continuous deepfake and impersonation enforcement for public figures, institutions, and the teams that represent them.</p>
+        <div style="margin-top:18px;font-size:0.82rem;color:rgba(255,255,255,0.4);">hello@deepguard.io · San Francisco, CA</div>
+      </div>
+      <div class="footer-col"><h5>Platform</h5><a href="services.html">Deepfake Removal</a><a href="services.html#youtube">YouTube Likeness</a><a href="pricing.html">Pricing &amp; Plans</a><a href="dashboard.html">Client Dashboard</a></div>
+      <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html?intent=takedown">Free Takedown</a><a href="mailto:hello@deepguard.io">Press</a></div>
+      <div class="footer-col"><h5>Legal</h5><a href="#">Privacy Policy</a><a href="#">Service Agreement</a><a href="contact.html?intent=takedown">Report Violation</a><a href="https://linkedin.com" target="_blank">LinkedIn</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DeepGuard · Not legal advice unless expressly retained · Results may vary by platform policy</p>
+      <div style="display:flex;gap:20px;"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — DeepGuard</title>
+<meta name="description" content="Transparent pricing for deepfake removal and protection. Start with one free takedown — no contract, no credit card.">
+<link rel="stylesheet" href="styles.css">
+<style>
+.pricing-hero { padding: 96px 0 72px; }
+.toggle-wrap { display: inline-flex; align-items: center; gap: 14px; background: var(--white); border: 1px solid var(--border); border-radius: 99px; padding: 6px 20px; font-size: 0.85rem; }
+.toggle-btn { position: relative; width: 44px; height: 24px; background: var(--border-d); border-radius: 99px; cursor: pointer; border: none; transition: background 0.2s; }
+.toggle-btn.on { background: var(--teal); }
+.toggle-btn::after { content: ''; position: absolute; width: 18px; height: 18px; background: white; border-radius: 50%; top: 3px; left: 3px; transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+.toggle-btn.on::after { transform: translateX(20px); }
+.toggle-label { font-weight: 600; color: var(--ink3); }
+.toggle-label.sel { color: var(--ink); }
+.save-pill { background: var(--teal-l); color: var(--teal-d); font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 99px; opacity: 0; transition: opacity 0.2s; }
+.save-pill.show { opacity: 1; }
+
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; background: var(--border); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); margin-top: 0; }
+.pricing-col { background: var(--white); padding: 36px 30px 40px; position: relative; }
+.pricing-col + .pricing-col { border-left: 1px solid var(--border); }
+.pricing-col.featured { background: var(--ink); }
+.pricing-col.featured .pricing-price { color: white; }
+.pricing-col.featured h3 { color: white; }
+.pricing-col.featured .pricing-desc { color: rgba(255,255,255,0.55); }
+.pricing-col.featured .pricing-feature { color: rgba(255,255,255,0.7); }
+.pricing-col.featured .pricing-feature .chk { color: #5ECAB3; }
+.pricing-col.featured .feature-div { background: rgba(255,255,255,0.1); }
+.pricing-col.featured .pricing-type { color: rgba(255,255,255,0.35); }
+.pricing-col.featured .price-unit { color: rgba(255,255,255,0.35); }
+.pricing-col.featured .price-period { color: rgba(255,255,255,0.35); }
+.pricing-col.featured .pricing-note { color: rgba(255,255,255,0.3); }
+.pricing-col.featured .btn-ghost-inv { background: transparent; border: 1px solid rgba(255,255,255,0.25); color: white; border-radius: 99px; padding: 13px 24px; font-size: 0.9rem; font-weight: 600; width: 100%; display: block; text-align: center; transition: all 0.18s; }
+.pricing-col.featured .btn-ghost-inv:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07); }
+.featured-tag { position: absolute; top: 0; right: 0; background: var(--teal); color: white; font-size: 0.63rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-bottom-left-radius: var(--radius-lg); }
+.pricing-type { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); margin-bottom: 20px; display: block; }
+.price-num { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; letter-spacing: -0.04em; }
+.price-unit { font-size: 0.85rem; color: var(--ink3); font-family: 'Inter', sans-serif; margin-top: 2px; }
+.price-period { font-size: 0.78rem; color: var(--ink3); height: 18px; }
+.pricing-desc { font-size: 0.875rem; color: var(--ink2); margin-top: 14px; line-height: 1.65; }
+.feature-div { height: 1px; background: var(--border); margin: 22px 0; }
+.pricing-feature { display: flex; align-items: flex-start; gap: 10px; padding: 5px 0; font-size: 0.86rem; color: var(--ink2); }
+.pricing-feature .chk { color: var(--teal); flex-shrink: 0; margin-top: 1px; font-weight: 700; }
+.pricing-feature .no-chk { color: var(--ink3); flex-shrink: 0; }
+.pricing-note { font-size: 0.76rem; color: var(--ink3); margin-top: 10px; text-align: center; }
+
+.compare-wrap { overflow-x: auto; }
+.compare-tbl { width: 100%; border-collapse: collapse; min-width: 600px; }
+.compare-tbl th { background: var(--bg); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink3); padding: 14px 20px; border-bottom: 1px solid var(--border); text-align: left; }
+.compare-tbl th.hl { background: rgba(13,158,131,0.06); }
+.compare-tbl td { padding: 13px 20px; font-size: 0.875rem; color: var(--ink2); border-bottom: 1px solid var(--border); }
+.compare-tbl tr:last-child td { border-bottom: none; }
+.compare-tbl td.hl { background: rgba(13,158,131,0.03); font-weight: 500; color: var(--ink); }
+.compare-tbl td:first-child { font-weight: 500; color: var(--ink); }
+.compare-tbl .yes { color: var(--teal); font-weight: 800; }
+.compare-tbl .no { color: var(--ink3); }
+.compare-tbl .row-group td { background: var(--bg); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); padding: 10px 20px; }
+
+.guarantee-block { background: var(--teal-l); border: 1px solid rgba(13,158,131,0.2); border-radius: var(--radius-lg); padding: 40px 48px; display: flex; gap: 32px; align-items: flex-start; }
+.guarantee-icon { font-size: 2.4rem; flex-shrink: 0; }
+
+@media(max-width:860px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-col + .pricing-col { border-left: none; border-top: 1px solid var(--border); }
+  .pricing-col.featured + .pricing-col { border-top: 1px solid rgba(255,255,255,0.1); }
+  .guarantee-block { flex-direction: column; gap: 16px; padding: 28px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-mark">🛡</div>DeepGuard</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html" class="active">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html?intent=takedown" class="nav-cta">Start Free Removal →</a>
+    </div>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+    <a href="contact.html?intent=takedown" style="color:var(--teal);font-weight:700;">→ Start Free Removal</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="pricing-hero">
+  <div class="container">
+    <div style="max-width:620px;">
+      <span class="eyebrow">Pricing</span>
+      <h1 style="font-size:clamp(2.4rem,5vw,4.2rem);margin-top:10px;">One free takedown.<br>Then pay for results.</h1>
+      <p style="margin-top:18px;max-width:500px;font-size:1rem;line-height:1.7;">No minimum commitment. No setup fees. Start with a single free removal so you see the work before you spend a dollar.</p>
+
+      <div style="margin-top:36px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <div class="toggle-wrap">
+          <span class="toggle-label sel" id="lblMonthly">Monthly</span>
+          <button class="toggle-btn" id="billingToggle" onclick="toggleBilling(this)"></button>
+          <span class="toggle-label" id="lblQuarterly">Quarterly</span>
+          <span class="save-pill" id="savePill">Save 15%</span>
+        </div>
+        <span style="font-size:0.82rem;color:var(--ink3);">30-day money-back guarantee on every plan</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING GRID -->
+<section style="padding-top:0;padding-bottom:80px;">
+  <div class="container">
+    <div class="pricing-grid fade-up">
+
+      <!-- Essentials -->
+      <div class="pricing-col">
+        <span class="pricing-type">Essentials</span>
+        <div class="price-num" id="price-essentials">$2,000</div>
+        <div class="price-unit">per month</div>
+        <div class="price-period" id="period-essentials"></div>
+        <p class="pricing-desc">For individuals managing isolated incidents across 1–2 platforms.</p>
+        <div class="feature-div"></div>
+        <div style="display:flex;flex-direction:column;margin-bottom:28px;">
+          <div class="pricing-feature"><span class="chk">✓</span>Up to 50 takedowns / month</div>
+          <div class="pricing-feature"><span class="chk">✓</span>YouTube + 1 additional platform</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Attorney-reviewed filings</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Daily automated monitoring</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Removal proof with timestamps</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Client dashboard access</div>
+          <div class="pricing-feature" style="color:var(--ink3);"><span class="no-chk">–</span>Domain takedowns</div>
+          <div class="pricing-feature" style="color:var(--ink3);"><span class="no-chk">–</span>Dedicated attorney contact</div>
+        </div>
+        <a href="contact.html?intent=scope" class="btn btn-ghost btn-lg" style="width:100%;justify-content:center;">Get started</a>
+        <div class="pricing-note">Month-to-month. Cancel anytime.</div>
+      </div>
+
+      <!-- Professional -->
+      <div class="pricing-col featured">
+        <div class="featured-tag">Most Popular</div>
+        <span class="pricing-type">Professional</span>
+        <div class="price-num" id="price-professional" style="color:white;">$3,500</div>
+        <div class="price-unit">per month</div>
+        <div class="price-period" id="period-professional"></div>
+        <p class="pricing-desc">For public figures and talent teams dealing with ongoing impersonation campaigns.</p>
+        <div class="feature-div"></div>
+        <div style="display:flex;flex-direction:column;margin-bottom:28px;">
+          <div class="pricing-feature"><span class="chk">✓</span>Up to 300 takedowns / month</div>
+          <div class="pricing-feature"><span class="chk">✓</span>All major platforms</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Attorney-reviewed filings</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Real-time continuous monitoring</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Domain takedowns included</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Dedicated attorney contact</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Weekly enforcement reports</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Removal proof with timestamps</div>
+        </div>
+        <a href="contact.html?intent=scope" class="btn btn-teal btn-lg" style="width:100%;justify-content:center;">Get started</a>
+        <div class="pricing-note">Most clients choose this plan.</div>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-col">
+        <span class="pricing-type">Enterprise</span>
+        <div class="price-num" id="price-enterprise">$5,000</div>
+        <div class="price-unit">per month</div>
+        <div class="price-period" id="period-enterprise"></div>
+        <p class="pricing-desc">For institutions, estates, and complex enforcement requiring custom SLAs.</p>
+        <div class="feature-div"></div>
+        <div style="display:flex;flex-direction:column;margin-bottom:28px;">
+          <div class="pricing-feature"><span class="chk">✓</span>Unlimited takedowns</div>
+          <div class="pricing-feature"><span class="chk">✓</span>All platforms + custom channels</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Senior attorney on retainer</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Real-time monitoring + alerts</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Domain + hosting takedowns</div>
+          <div class="pricing-feature"><span class="chk">✓</span>24-hour emergency escalation</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Custom SLA &amp; reporting cadence</div>
+          <div class="pricing-feature"><span class="chk">✓</span>Legal demand letters included</div>
+        </div>
+        <a href="contact.html?intent=enterprise" class="btn btn-ghost btn-lg" style="width:100%;justify-content:center;">Contact us</a>
+        <div class="pricing-note">Custom pricing available for large engagements.</div>
+      </div>
+
+    </div>
+
+    <!-- Guarantee -->
+    <div class="guarantee-block fade-up" style="margin-top:48px;">
+      <div class="guarantee-icon">🛡</div>
+      <div>
+        <h3 style="font-size:1.25rem;">30-day money-back guarantee</h3>
+        <p style="margin-top:8px;max-width:580px;">If we can't file a single successful takedown in your first 30 days, we refund your subscription — no questions, no forms. You can also start with one free removal before committing to any plan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section style="padding:0 0 80px;">
+  <div class="container">
+    <span class="eyebrow">Full comparison</span>
+    <h2 style="margin:10px 0 36px;">What's in each plan</h2>
+    <div class="compare-wrap fade-up" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;">
+      <table class="compare-tbl">
+        <thead>
+          <tr>
+            <th style="width:34%;">Feature</th>
+            <th>Essentials</th>
+            <th class="hl">Professional</th>
+            <th>Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-group"><td colspan="4">Enforcement</td></tr>
+          <tr><td>Takedowns per month</td><td>Up to 50</td><td class="hl">Up to 300</td><td>Unlimited</td></tr>
+          <tr><td>Platforms covered</td><td>YouTube + 1</td><td class="hl">All major</td><td>All + custom</td></tr>
+          <tr><td>Domain / hosting takedowns</td><td><span class="no">—</span></td><td class="hl"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Legal demand letters</td><td><span class="no">—</span></td><td class="hl"><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
+          <tr class="row-group"><td colspan="4">Legal &amp; Oversight</td></tr>
+          <tr><td>Attorney-reviewed filings</td><td><span class="yes">✓</span></td><td class="hl"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Dedicated attorney contact</td><td><span class="no">—</span></td><td class="hl"><span class="yes">✓</span></td><td>Senior attorney</td></tr>
+          <tr><td>24-hour emergency escalation</td><td><span class="no">—</span></td><td class="hl"><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
+          <tr class="row-group"><td colspan="4">Monitoring &amp; Reporting</td></tr>
+          <tr><td>Monitoring frequency</td><td>Daily</td><td class="hl">Real-time</td><td>Real-time + alerts</td></tr>
+          <tr><td>Removal proof &amp; timestamps</td><td><span class="yes">✓</span></td><td class="hl"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Enforcement reports</td><td>Monthly</td><td class="hl">Weekly</td><td>Custom cadence</td></tr>
+          <tr><td>Client dashboard</td><td><span class="yes">✓</span></td><td class="hl"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr class="row-group"><td colspan="4">Terms</td></tr>
+          <tr><td>Free first takedown</td><td><span class="yes">✓</span></td><td class="hl"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>30-day money-back guarantee</td><td><span class="yes">✓</span></td><td class="hl"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Contract required</td><td>No</td><td class="hl">No</td><td>Optional</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding:0 0 100px;">
+  <div class="container" style="max-width:740px;">
+    <span class="eyebrow">Common questions</span>
+    <h2 style="margin:10px 0 0;">Pricing FAQ</h2>
+    <div class="rule"></div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">How does the free takedown work?<span class="accordion-icon">+</span></button>
+      <div class="accordion-body"><div class="accordion-body-inner">Send us a single impersonation URL — a deepfake video, fake profile, or fraudulent domain — and we'll file a complete attorney-backed takedown at no cost. You receive the filing summary and the removal outcome before we ask for anything.</div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">Can I pause or cancel my subscription?<span class="accordion-icon">+</span></button>
+      <div class="accordion-body"><div class="accordion-body-inner">Yes. All plans are month-to-month by default. You can pause or cancel with 30 days' notice. If you cancel within the first 30 days and we haven't delivered a successful removal, you receive a full refund.</div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">What counts as a "takedown"?<span class="accordion-icon">+</span></button>
+      <div class="accordion-body"><div class="accordion-body-inner">Each platform filing counts as one takedown. If the same video exists on three platforms, that's three takedowns. We track the count in your dashboard in real time.</div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">Do I need to sign a legal retainer?<span class="accordion-icon">+</span></button>
+      <div class="accordion-body"><div class="accordion-body-inner">No retainer is required for Essentials or Professional plans. Our attorneys file on your behalf under a limited-engagement model. Enterprise clients who want full legal representation can retain our counsel for an additional fee. Nothing on this site constitutes legal advice unless a retainer is expressly signed.</div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">What if content is re-uploaded after removal?<span class="accordion-icon">+</span></button>
+      <div class="accordion-body"><div class="accordion-body-inner">Our monitoring watches for re-uploads continuously (real-time on Professional/Enterprise; daily on Essentials). When a re-upload is detected, we file a new takedown automatically — it counts against your monthly allowance. Repeat patterns are escalated to platform trust-and-safety teams.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--ink);padding:96px 0;">
+  <div class="container">
+    <div style="max-width:560px;">
+      <span class="eyebrow" style="color:rgba(255,255,255,0.35);">Get started today</span>
+      <h2 style="color:white;margin-top:12px;">One URL. That's all we need to begin.</h2>
+      <p style="color:rgba(255,255,255,0.5);margin-top:16px;font-size:0.95rem;">Send us a single deepfake link and we'll file the removal — free, with proof — so you can evaluate our work before committing to a plan.</p>
+      <div style="display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;">
+        <a href="contact.html?intent=takedown" class="btn btn-teal btn-lg">Start free takedown →</a>
+        <a href="contact.html?intent=scope" class="btn" style="background:transparent;color:white;border:1px solid rgba(255,255,255,0.25);border-radius:99px;padding:15px 32px;font-size:1rem;font-weight:600;">Book a scoping call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><div class="footer-logo-mark">🛡</div>DeepGuard</div>
+        <p>Continuous deepfake and impersonation enforcement for public figures, institutions, and the teams that represent them.</p>
+        <div style="margin-top:20px;font-size:0.82rem;color:rgba(255,255,255,0.3);">Need help? <a href="mailto:hello@deepguard.io" style="color:rgba(255,255,255,0.55);">hello@deepguard.io</a></div>
+      </div>
+      <div class="footer-col"><h5>Platform</h5><a href="services.html">Deepfake Removal</a><a href="services.html">YouTube Likeness</a><a href="pricing.html">Pricing &amp; Plans</a></div>
+      <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html?intent=takedown">Start Free Takedown</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="contact.html?intent=takedown">Report a Violation</a><a href="#">Privacy Policy</a><a href="#">Service Agreement</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 DeepGuard · Not legal advice unless expressly retained · Results may vary by platform policy</p></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+var isQ = false;
+var prices = {
+  essentials:   ['$2,000','$1,700'],
+  professional: ['$3,500','$2,975'],
+  enterprise:   ['$5,000','$4,250']
+};
+function toggleBilling(btn) {
+  isQ = !isQ;
+  btn.classList.toggle('on', isQ);
+  document.getElementById('savePill').classList.toggle('show', isQ);
+  document.getElementById('lblMonthly').classList.toggle('sel', !isQ);
+  document.getElementById('lblQuarterly').classList.toggle('sel', isQ);
+  var i = isQ ? 1 : 0;
+  for (var k in prices) {
+    var el = document.getElementById('price-' + k);
+    var pe = document.getElementById('period-' + k);
+    if (el) el.textContent = prices[k][i];
+    if (pe) pe.textContent = isQ ? 'billed quarterly' : '';
+  }
+}
+</script>
+</body>
+</html>

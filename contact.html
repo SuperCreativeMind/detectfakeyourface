@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — DeepGuard</title>
+<meta name="description" content="Start a free takedown, book a scoping call, or reach our team directly. No contract, no credit card required to begin.">
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-hero { padding: 80px 0 56px; }
+.contact-layout { display: grid; grid-template-columns: 1fr 1.45fr; gap: 72px; align-items: start; }
+.sidebar-sticky { position: sticky; top: 88px; }
+.info-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 16px; }
+.info-row { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.info-row:last-child { border-bottom: none; padding-bottom: 0; }
+.info-row:first-child { padding-top: 0; }
+.info-icon { width: 34px; height: 34px; border-radius: 8px; background: var(--teal-l); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.info-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); margin-bottom: 3px; }
+.info-val { font-size: 0.875rem; color: var(--ink); }
+
+.intent-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+.intent-opt { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; border: 1px solid var(--border-d); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.18s; }
+.intent-opt:hover { border-color: var(--teal); background: var(--teal-l); }
+.intent-opt.sel { border-color: var(--teal); background: var(--teal-l); }
+.intent-opt input { margin-top: 3px; accent-color: var(--teal); flex-shrink: 0; }
+.intent-opt .opt-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; color: var(--ink); }
+.intent-opt .opt-desc { font-size: 0.8rem; color: var(--ink2); line-height: 1.5; }
+.intent-opt.sel .opt-desc { color: var(--teal-d); }
+
+.form-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px; }
+.form-section { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin: 28px 0 16px; display: block; }
+.form-section:first-child { margin-top: 0; }
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.guarantee-row { display: flex; gap: 10px; align-items: center; padding: 14px 16px; background: var(--teal-l); border: 1px solid rgba(13,158,131,0.2); border-radius: var(--radius); margin-top: 20px; font-size: 0.84rem; color: var(--teal-d); }
+
+.process-mini { display: flex; flex-direction: column; gap: 14px; }
+.pmini-item { display: flex; gap: 12px; align-items: flex-start; }
+.pmini-num { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1em; color: var(--teal); border: 1.5px solid rgba(13,158,131,0.3); width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.pmini-text { font-size: 0.83rem; color: var(--ink2); line-height: 1.55; }
+
+.success-state { display: none; text-align: center; padding: 56px 32px; }
+.success-state .s-icon { font-size: 3rem; margin-bottom: 20px; }
+.success-state h3 { margin-bottom: 10px; }
+.success-state p { font-size: 0.9rem; max-width: 320px; margin: 0 auto; }
+
+@media(max-width:880px) { .contact-layout { grid-template-columns: 1fr; } .sidebar-sticky { position: static; } }
+@media(max-width:520px) { .form-card { padding: 28px 22px; } .form-row-2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-mark">🛡</div>DeepGuard</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="contact.html?intent=takedown" class="nav-cta">Start Free Removal →</a>
+    </div>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+    <a href="contact.html?intent=takedown" style="color:var(--teal);font-weight:700;">→ Start Free Removal</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div style="max-width:560px;">
+      <span class="eyebrow">Get in touch</span>
+      <h1 style="font-size:clamp(2.2rem,4.5vw,3.6rem);margin-top:10px;">Start your free removal. <span class="teal">No contract required.</span></h1>
+      <p style="margin-top:16px;font-size:1rem;line-height:1.75;max-width:460px;">Send us a single impersonation URL and we'll file it — so you can see the work before committing to anything. Most cases are scoped within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT LAYOUT -->
+<section style="padding-top:0;padding-bottom:100px;">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- SIDEBAR -->
+      <div class="sidebar-sticky">
+        <div class="info-card">
+          <div class="info-row">
+            <div class="info-icon">⚡</div>
+            <div><div class="info-label">Response time</div><div class="info-val">Within 1 business day</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🆓</div>
+            <div><div class="info-label">Free trial</div><div class="info-val">One takedown at no cost</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🔒</div>
+            <div><div class="info-label">Confidentiality</div><div class="info-val">NDA available on request</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📧</div>
+            <div><div class="info-label">Direct email</div><div class="info-val"><a href="mailto:hello@deepguard.io" style="color:var(--teal);">hello@deepguard.io</a></div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div><div class="info-label">Office</div><div class="info-val">490 Post St Ste 500<br>San Francisco, CA 94102</div></div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:18px;">What happens after you submit</div>
+          <div class="process-mini">
+            <div class="pmini-item">
+              <div class="pmini-num">1</div>
+              <div class="pmini-text">We review your submission and assess whether the content is actionable under platform policy.</div>
+            </div>
+            <div class="pmini-item">
+              <div class="pmini-num">2</div>
+              <div class="pmini-text">An attorney drafts the filing against the exact policy clause that applies — likeness rights, synthetic-media, or impersonation policy.</div>
+            </div>
+            <div class="pmini-item">
+              <div class="pmini-num">3</div>
+              <div class="pmini-text">We file, track the removal, and report the outcome to you with timestamped proof of takedown.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div>
+        <div class="form-card">
+          <div id="formInner">
+
+            <span class="form-section">What can we help with?</span>
+            <div class="intent-group" id="intentGroup">
+              <label class="intent-opt sel">
+                <input type="radio" name="intent" value="takedown" checked>
+                <div>
+                  <div class="opt-title">Start a free takedown</div>
+                  <div class="opt-desc">Submit an impersonation URL — we'll file at no cost so you can see the work firsthand.</div>
+                </div>
+              </label>
+              <label class="intent-opt">
+                <input type="radio" name="intent" value="scope">
+                <div>
+                  <div class="opt-title">Book a scoping call</div>
+                  <div class="opt-desc">Describe the scale of the problem — we'll map the threat and recommend the right coverage.</div>
+                </div>
+              </label>
+              <label class="intent-opt">
+                <input type="radio" name="intent" value="enterprise">
+                <div>
+                  <div class="opt-title">Enterprise / custom engagement</div>
+                  <div class="opt-desc">For organizations with complex or large-scale enforcement needs. Custom pricing and SLAs.</div>
+                </div>
+              </label>
+              <label class="intent-opt">
+                <input type="radio" name="intent" value="press">
+                <div>
+                  <div class="opt-title">Press or partnership inquiry</div>
+                  <div class="opt-desc">Media, research, or partnership questions.</div>
+                </div>
+              </label>
+            </div>
+
+            <span class="form-section">Verify the video</span>
+            <p style="color:var(--text-muted);font-size:0.875rem;margin:-8px 0 16px;">Optional — upload a suspect video or paste a URL to get an instant AI-powered deepfake assessment.</p>
+            <div id="dfcheck-mount"></div>
+
+            <span class="form-section">Your details</span>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="firstName">First name</label>
+                  <input type="text" id="firstName" placeholder="Alex" required>
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last name</label>
+                  <input type="text" id="lastName" placeholder="Jordan" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Work email</label>
+                <input type="email" id="email" placeholder="you@organization.com" required>
+              </div>
+              <div class="form-group">
+                <label for="role">Your role</label>
+                <select id="role">
+                  <option value="">Select role…</option>
+                  <option>General Counsel / Legal</option>
+                  <option>Chief of Staff</option>
+                  <option>Communications / PR</option>
+                  <option>The public figure themselves</option>
+                  <option>Estate / Foundation representative</option>
+                  <option>Social media / Platform manager</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="organization">Organization or client name</label>
+                <input type="text" id="organization" placeholder="e.g. Dr. Jane Smith's team / Acme Agency">
+              </div>
+            </div>
+
+            <span class="form-section">About the threat</span>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div class="form-group">
+                <label for="url">Impersonation URL (if you have one)</label>
+                <input type="url" id="url" placeholder="https://youtube.com/watch?v=…">
+              </div>
+              <div class="form-group">
+                <label for="platform">Primary platform</label>
+                <select id="platform">
+                  <option value="">Select platform…</option>
+                  <option>YouTube</option>
+                  <option>TikTok</option>
+                  <option>Meta (Facebook / Instagram)</option>
+                  <option>X (Twitter)</option>
+                  <option>Multiple platforms</option>
+                  <option>Other / Unsure</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="scale">Approximate scale of the problem</label>
+                <select id="scale">
+                  <option value="">Select scale…</option>
+                  <option>1–10 videos</option>
+                  <option>10–100 videos</option>
+                  <option>100–1,000 videos</option>
+                  <option>1,000+ videos</option>
+                  <option>Unsure</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Additional context (optional)</label>
+                <textarea id="message" placeholder="Anything else that helps — prior takedown attempts, urgency, known impersonator network details…"></textarea>
+              </div>
+            </div>
+
+            <button onclick="handleSubmit(event)" style="width:100%;margin-top:28px;display:flex;align-items:center;justify-content:center;gap:8px;padding:16px 24px;background:var(--ink);color:white;border:none;border-radius:99px;font-family:'Inter',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;transition:opacity 0.18s;" id="submitBtn" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">Submit request →</button>
+
+            <div class="guarantee-row">
+              <span>🛡</span>
+              <span>30-day money-back guarantee on every subscription. Free trial requires no payment.</span>
+            </div>
+            <p style="font-size:0.75rem;color:var(--ink3);margin-top:14px;text-align:center;">Not legal advice unless expressly retained. Submissions reviewed within 1 business day.</p>
+          </div>
+
+          <div class="success-state" id="successState">
+            <div class="s-icon">✅</div>
+            <h3>Request received.</h3>
+            <p style="color:var(--ink2);margin-top:8px;">We'll review your submission and reach out within one business day. If you submitted a URL, we'll begin assessing it for actionability immediately.</p>
+            <div style="margin-top:28px;">
+              <a href="index.html" class="btn btn-ghost btn-sm">← Back to home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><div class="footer-logo-mark">🛡</div>DeepGuard</div>
+        <p>Continuous deepfake and impersonation enforcement for public figures, institutions, and the teams that represent them.</p>
+        <div style="margin-top:20px;font-size:0.82rem;color:rgba(255,255,255,0.3);">Need help? <a href="mailto:hello@deepguard.io" style="color:rgba(255,255,255,0.55);">hello@deepguard.io</a></div>
+      </div>
+      <div class="footer-col"><h5>Platform</h5><a href="services.html">Deepfake Removal</a><a href="services.html#youtube">YouTube Likeness</a><a href="pricing.html">Pricing &amp; Plans</a></div>
+      <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html?intent=takedown">Start Free Takedown</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="contact.html?intent=takedown">Report a Violation</a><a href="#">Privacy Policy</a><a href="#">Service Agreement</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 DeepGuard · Not legal advice unless expressly retained · Results may vary by platform policy</p></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+<!-- ============ Deepfake-check widget ============ -->
+<script>
+  // Local dev: detection API running on your laptop.
+  // After Fly.io deploy, change this to https://api.yoursite.com and set DFCHECK_KEY.
+  window.DFCHECK_API = "http://localhost:8000";
+  window.DFCHECK_KEY = "";
+</script>
+<script>
+(() => {
+  const mount = document.getElementById("dfcheck-mount");
+  if (!mount) return;
+  const css = `
+    .dfc { font: 14px/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1f; }
+    .dfc * { box-sizing: border-box; }
+    .dfc-card { background:#fafafa;border:1px solid #e4e4e7;border-radius:10px;padding:18px;margin-bottom:28px;}
+    .dfc-drop { border:2px dashed #d4d4d8;border-radius:8px;padding:24px 16px;text-align:center;cursor:pointer;transition:.15s;}
+    .dfc-drop:hover,.dfc-drop.over { border-color:#10b981;background:#ecfdf5;}
+    .dfc-drop input { display:none;}
+    .dfc-row { display:flex;gap:8px;margin-top:12px;}
+    .dfc-row input[type=text] { flex:1;border:1px solid #d4d4d8;padding:9px 11px;border-radius:7px;font:inherit;}
+    .dfc-btn { background:#10b981;color:#fff;border:none;padding:9px 16px;border-radius:7px;font:600 14px/1 inherit;cursor:pointer;}
+    .dfc-btn:hover { filter:brightness(1.05);}
+    .dfc-status { margin-top:12px;color:#71717a;font-size:13px;}
+    .dfc-result { margin-top:14px;}
+    .dfc-verdict { display:inline-block;padding:3px 10px;border-radius:5px;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em;}
+    .dfc-v-fake { background:#fee2e2;color:#b91c1c;}
+    .dfc-v-real { background:#dcfce7;color:#166534;}
+    .dfc-v-uncertain { background:#fef3c7;color:#92400e;}
+    .dfc-num { font-size:28px;font-weight:600;margin-top:6px;}
+    .dfc-meter { height:7px;background:#f4f4f5;border-radius:4px;overflow:hidden;margin:10px 0 8px;}
+    .dfc-meter > div { height:100%;transition:width .4s;}
+    .dfc-kvs { display:grid;grid-template-columns:130px 1fr;gap:4px 16px;margin-top:12px;font-size:13px;}
+    .dfc-kvs dt { color:#71717a;}
+    .dfc-kvs dd { margin:0;font-variant-numeric:tabular-nums;}
+  `;
+  const s = document.createElement("style"); s.textContent = css; document.head.appendChild(s);
+  mount.innerHTML = `
+    <div class="dfc"><div class="dfc-card">
+      <label class="dfc-drop" id="dfc-drop">
+        <input type="file" id="dfc-file" accept="video/*,image/*" />
+        <div><b>Drop a file</b> or click to choose</div>
+        <div style="color:#71717a;font-size:12px;margin-top:6px">video or image · up to 200 MB</div>
+      </label>
+      <div class="dfc-row">
+        <input type="text" id="dfc-url" placeholder="...or paste a URL" />
+        <button type="button" class="dfc-btn" id="dfc-urlbtn">Check URL</button>
+      </div>
+      <div class="dfc-status" id="dfc-status"></div>
+      <div class="dfc-result" id="dfc-result"></div>
+    </div></div>
+  `;
+  const $ = id => mount.querySelector("#" + id);
+  const headers = (extra={}) => window.DFCHECK_KEY ? {...extra, "X-Api-Key": window.DFCHECK_KEY} : extra;
+  const status = t => $("dfc-status").textContent = t;
+  const fmt = p => (p*100).toFixed(1) + "%";
+  const color = p => p >= .7 ? "#dc2626" : p <= .3 ? "#10b981" : "#f59e0b";
+  function render(r) {
+    status("");
+    const isVideo = "mean_face_fake_prob" in r;
+    const p = isVideo ? r.mean_face_fake_prob : r.fake_probability;
+    const v = isVideo ? r.overall_verdict : r.verdict;
+    $("dfc-result").innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="dfc-verdict dfc-v-${v}">${v}</span>
+        <span style="color:#71717a;font-size:12px">deepfake probability</span>
+      </div>
+      <div class="dfc-num" style="color:${color(p)}">${fmt(p)}</div>
+      <div class="dfc-meter"><div style="width:${p*100}%;background:${color(p)}"></div></div>
+      <dl class="dfc-kvs">
+        ${isVideo ? `
+          <dt>Frames analyzed</dt><dd>${r.frames_analyzed}</dd>
+          <dt>Flagged as fake</dt><dd>${fmt(r.fake_frame_ratio)}</dd>
+        ` : `<dt>Confidence</dt><dd>${fmt(r.confidence)}</dd>`}
+      </dl>
+    `;
+  }
+  async function poll(id) {
+    for (let i = 0; i < 120; i++) {
+      await new Promise(r => setTimeout(r, 1500));
+      const r = await fetch(`${window.DFCHECK_API}/api/jobs/${id}`, {headers: headers()});
+      const j = await r.json();
+      status("Status: " + j.status + "…");
+      if (j.status === "done") return render(j.result);
+      if (j.status === "error") return status("Error: " + j.error);
+    }
+    status("Timed out.");
+  }
+  async function upload(file) {
+    status("Uploading…"); $("dfc-result").innerHTML = "";
+    const fd = new FormData(); fd.append("file", file);
+    const r = await fetch(`${window.DFCHECK_API}/api/analyze`, {method:"POST", body: fd, headers: headers()});
+    if (!r.ok) return status("Upload failed.");
+    poll((await r.json()).job_id);
+  }
+  async function fromUrl() {
+    const url = $("dfc-url").value.trim(); if (!url) return;
+    status("Queued — downloading…"); $("dfc-result").innerHTML = "";
+    const r = await fetch(`${window.DFCHECK_API}/api/analyze-url`, {
+      method:"POST", headers: headers({"Content-Type":"application/json"}),
+      body: JSON.stringify({url})
+    });
+    if (!r.ok) return status("Request failed.");
+    poll((await r.json()).job_id);
+  }
+  const drop = $("dfc-drop"), fi = $("dfc-file");
+  fi.onchange = e => e.target.files[0] && upload(e.target.files[0]);
+  ["dragenter","dragover"].forEach(ev => drop.addEventListener(ev, e => {e.preventDefault(); drop.classList.add("over");}));
+  ["dragleave","drop"].forEach(ev => drop.addEventListener(ev, e => {e.preventDefault(); drop.classList.remove("over");}));
+  drop.addEventListener("drop", e => { const f = e.dataTransfer.files[0]; if (f) upload(f); });
+  $("dfc-urlbtn").onclick = fromUrl;
+  $("dfc-url").onkeydown = e => e.key === "Enter" && (e.preventDefault(), fromUrl());
+})();
+</script>
+<!-- ============ End deepfake-check widget ============ -->
+
+<script>
+// Intent option highlighting
+document.querySelectorAll('.intent-opt').forEach(function(opt) {
+  opt.addEventListener('click', function() {
+    document.querySelectorAll('.intent-opt').forEach(function(o) { o.classList.remove('sel'); });
+    opt.classList.add('sel');
+  });
+});
+
+// Pre-select from URL param
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var intent = params.get('intent');
+  if (!intent) return;
+  var radio = document.querySelector('input[value="' + intent + '"]');
+  if (!radio) radio = document.querySelector('input[value="takedown"]');
+  document.querySelectorAll('.intent-opt').forEach(function(o) { o.classList.remove('sel'); });
+  radio.closest('.intent-opt').classList.add('sel');
+  radio.checked = true;
+})();
+
+function handleSubmit(e) {
+  e.preventDefault();
+  var btn = document.getElementById('submitBtn');
+  btn.textContent = 'Submitting…';
+  btn.disabled = true;
+  btn.style.opacity = '0.6';
+  setTimeout(function() {
+    document.getElementById('formInner').style.display = 'none';
+    document.getElementById('successState').style.display = 'block';
+  }, 1200);
+}
+</script>
+</body>
+</html>

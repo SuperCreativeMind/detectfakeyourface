@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — DeepGuard</title>
+<meta name="description" content="Attorney-backed deepfake removal, YouTube likeness enforcement, social impersonation takedowns, domain seizure, and ongoing monitoring for public figures.">
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-hero { padding: 96px 0 80px; }
+.service-block { padding: 100px 0; border-top: 1px solid var(--border); }
+.service-block:first-of-type { border-top: none; }
+.service-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+.service-layout.reverse { grid-template-columns: 1.2fr 1fr; }
+.service-layout.reverse .service-content { order: 2; }
+.service-layout.reverse .service-visual { order: 1; }
+.service-visual { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; }
+.service-content { position: sticky; top: 88px; }
+.platform-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 14px; font-size: 0.82rem; font-weight: 500; color: var(--ink2); }
+.platform-tag .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.platform-tag .dot.yt { background: #FF0000; }
+.platform-tag .dot.tt { background: #000; }
+.platform-tag .dot.fb { background: #1877F2; }
+.platform-tag .dot.tw { background: #1D9BF0; }
+.platform-tag .dot.dm { background: var(--teal); }
+
+.stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
+.stat-cell { background: var(--white); padding: 24px; }
+.stat-cell .num { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; color: var(--ink); }
+.stat-cell .lbl { font-size: 0.78rem; color: var(--ink3); margin-top: 4px; }
+
+.process-steps { display: flex; flex-direction: column; gap: 0; }
+.p-step { display: flex; gap: 20px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+.p-step:last-child { border-bottom: none; }
+.p-step-num { font-family: 'Syne', sans-serif; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em; color: var(--teal); border: 1.5px solid rgba(13,158,131,0.3); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.p-step-body h4 { font-size: 0.92rem; margin-bottom: 4px; }
+.p-step-body p { font-size: 0.83rem; color: var(--ink2); }
+
+.coverage-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
+.coverage-cell { background: var(--white); padding: 28px 24px; }
+.coverage-cell .icon { font-size: 1.5rem; margin-bottom: 12px; }
+.coverage-cell h4 { font-size: 0.92rem; margin-bottom: 6px; }
+.coverage-cell p { font-size: 0.8rem; color: var(--ink2); }
+
+.outcome-bar { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.outcome-bar:last-child { border-bottom: none; }
+.outcome-pct { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--teal); min-width: 52px; }
+.outcome-label { font-size: 0.85rem; color: var(--ink2); flex: 1; }
+.outcome-track { height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; width: 100px; flex-shrink: 0; }
+.outcome-fill { height: 100%; background: var(--teal); border-radius: 99px; }
+
+@media(max-width:900px) {
+  .service-layout, .service-layout.reverse { grid-template-columns: 1fr; gap: 40px; }
+  .service-layout.reverse .service-content,
+  .service-layout.reverse .service-visual { order: unset; }
+  .service-content { position: static; }
+  .coverage-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:500px) {
+  .coverage-grid { grid-template-columns: 1fr; }
+  .stat-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-mark">🛡</div>DeepGuard</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html?intent=takedown" class="nav-cta">Start Free Removal →</a>
+    </div>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+    <a href="contact.html?intent=takedown" style="color:var(--teal);font-weight:700;">→ Start Free Removal</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div style="max-width:680px;">
+      <span class="eyebrow">What we do</span>
+      <h1 style="font-size:clamp(2.4rem,5vw,4.2rem);margin-top:10px;">Every enforcement lever. One team.</h1>
+      <p style="margin-top:20px;font-size:1.05rem;max-width:540px;line-height:1.75;">From a single deepfake video to coordinated impersonation networks — our attorneys and enforcement specialists have the tools and the platform relationships to make it stop.</p>
+      <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="contact.html?intent=takedown" class="btn btn-primary btn-lg">Start a free takedown →</a>
+        <a href="pricing.html" class="btn btn-ghost btn-lg">See pricing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE 1: Deepfake Video Removal -->
+<section class="service-block" id="deepfake">
+  <div class="container">
+    <div class="service-layout">
+      <div class="service-content fade-up">
+        <span class="eyebrow eyebrow-teal">Service 01</span>
+        <h2>Deepfake video removal</h2>
+        <div class="rule"></div>
+        <p>AI-generated videos using your face, voice, or likeness — whether for financial fraud, non-consensual content, or political manipulation — are filed against each platform's synthetic-media and impersonation policies by a licensed attorney.</p>
+        <p style="margin-top:14px;">We don't use automated DMCA spammers. Every filing identifies the exact policy clause that applies, includes evidence of your identity, and is signed by counsel. Platforms respond faster to well-formed attorney filings than to user reports alone.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;">
+          <span class="platform-tag"><span class="dot yt"></span>YouTube</span>
+          <span class="platform-tag"><span class="dot tt"></span>TikTok</span>
+          <span class="platform-tag"><span class="dot fb"></span>Meta</span>
+          <span class="platform-tag"><span class="dot tw"></span>X (Twitter)</span>
+        </div>
+        <div style="margin-top:32px;">
+          <a href="contact.html?intent=takedown" class="btn-text btn">File a deepfake takedown →</a>
+        </div>
+      </div>
+
+      <div class="service-visual fade-up" style="transition-delay:0.1s;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);">Filing process</span>
+          <span class="badge badge-teal badge-dot">Live tracking</span>
+        </div>
+        <div class="process-steps">
+          <div class="p-step">
+            <div class="p-step-num">01</div>
+            <div class="p-step-body"><h4>URL submission</h4><p>You send us the link. We archive the content with a timestamped hash immediately.</p></div>
+          </div>
+          <div class="p-step">
+            <div class="p-step-num">02</div>
+            <div class="p-step-body"><h4>Policy mapping</h4><p>Our attorney identifies the exact clause — synthetic media, impersonation, or likeness rights — and assembles the filing.</p></div>
+          </div>
+          <div class="p-step">
+            <div class="p-step-num">03</div>
+            <div class="p-step-body"><h4>Attorney filing</h4><p>The complete package — evidence, identity proof, and counsel signature — is submitted to the platform's legal team.</p></div>
+          </div>
+          <div class="p-step">
+            <div class="p-step-num">04</div>
+            <div class="p-step-body"><h4>Removal + proof</h4><p>Once removed, we capture a timestamped proof of takedown and log it to your dashboard.</p></div>
+          </div>
+        </div>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border);">
+          <div style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px;">Platform outcomes (last 90 days)</div>
+          <div class="outcome-bar"><span class="outcome-pct">94%</span><span class="outcome-label">YouTube deepfake removals</span><div class="outcome-track"><div class="outcome-fill" style="width:94%"></div></div></div>
+          <div class="outcome-bar"><span class="outcome-pct">91%</span><span class="outcome-label">TikTok impersonation removals</span><div class="outcome-track"><div class="outcome-fill" style="width:91%"></div></div></div>
+          <div class="outcome-bar"><span class="outcome-pct">88%</span><span class="outcome-label">Meta / Instagram removals</span><div class="outcome-track"><div class="outcome-fill" style="width:88%"></div></div></div>
+          <div class="outcome-bar"><span class="outcome-pct">86%</span><span class="outcome-label">X (Twitter) removals</span><div class="outcome-track"><div class="outcome-fill" style="width:86%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE 2: YouTube Likeness Enforcement -->
+<section class="service-block" id="youtube" style="background:var(--white);">
+  <div class="container">
+    <div class="service-layout reverse">
+      <div class="service-visual fade-up">
+        <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:20px;">Real case — anonymised</div>
+        <div style="background:var(--bg);border-radius:var(--radius);padding:20px;margin-bottom:16px;">
+          <div style="font-size:0.78rem;font-weight:600;color:var(--ink2);margin-bottom:8px;">Client profile</div>
+          <div style="font-size:0.88rem;color:var(--ink);">Religious leader, 4.2M followers. Impersonators promoting a fraudulent investment product using cloned voice and face.</div>
+        </div>
+        <div class="stat-row" style="margin-bottom:16px;">
+          <div class="stat-cell"><div class="num" data-counter data-target="340" data-suffix="">340</div><div class="lbl">Videos removed in 60 days</div></div>
+          <div class="stat-cell"><div class="num" data-counter data-target="18" data-suffix="">18</div><div class="lbl">Accounts terminated</div></div>
+          <div class="stat-cell"><div class="num">6</div><div class="lbl">Hours to first removal</div></div>
+          <div class="stat-cell"><div class="num" data-counter data-target="97" data-suffix="%">97%</div><div class="lbl">Takedown success rate</div></div>
+        </div>
+        <div style="background:var(--teal-l);border:1px solid rgba(13,158,131,0.2);border-radius:var(--radius);padding:16px;font-size:0.84rem;color:var(--teal-d);">
+          <strong>Outcome:</strong> YouTube issued a blanket channel-strike warning to the impersonator network. Ongoing monitoring active.
+        </div>
+      </div>
+
+      <div class="service-content fade-up" style="transition-delay:0.1s;">
+        <span class="eyebrow eyebrow-teal">Service 02</span>
+        <h2>YouTube likeness enforcement</h2>
+        <div class="rule"></div>
+        <p>YouTube's likeness rights policy — introduced for AI-generated content — gives us a powerful lever that most generalist DMCA services don't use. We file specifically under this clause when your face, voice, or persona has been used without consent in synthetic video.</p>
+        <p style="margin-top:14px;">Beyond individual videos, we pursue the channels themselves through YouTube's repeat-infringer termination framework. Prolific impersonator accounts are removed at the root — not just video by video.</p>
+        <ul style="list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:8px;">
+          <li style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--teal);font-weight:700;flex-shrink:0;">✓</span>AI likeness rights filings</li>
+          <li style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--teal);font-weight:700;flex-shrink:0;">✓</span>Channel termination escalation</li>
+          <li style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--teal);font-weight:700;flex-shrink:0;">✓</span>Trust-and-safety team coordination</li>
+          <li style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--teal);font-weight:700;flex-shrink:0;">✓</span>Repeat-offender network mapping</li>
+        </ul>
+        <a href="contact.html?intent=takedown" class="btn-text btn" style="margin-top:28px;">Report a YouTube impersonation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE 3: Social & Domain Takedowns -->
+<section class="service-block" id="social">
+  <div class="container">
+    <div class="service-layout">
+      <div class="service-content fade-up">
+        <span class="eyebrow eyebrow-teal">Service 03</span>
+        <h2>Social impersonation &amp; domain takedowns</h2>
+        <div class="rule"></div>
+        <p>Fake accounts on Instagram, Facebook, X, and TikTok — combined with fraudulent domains — create complete phishing ecosystems. We dismantle each layer: social account suspension filings, registrar abuse complaints, and hosting provider notices, coordinated simultaneously.</p>
+        <p style="margin-top:14px;">Domain takedowns use ICANN's Uniform Domain-Name Dispute-Resolution Policy (UDRP) where appropriate, and direct registrar abuse channels for faster cases. We also issue DMCA takedowns to hosting providers when the infringing content is on a custom site.</p>
+        <a href="contact.html?intent=scope" class="btn-text btn" style="margin-top:28px;">Talk to us about a domain case →</a>
+      </div>
+
+      <div class="service-visual fade-up" style="transition-delay:0.1s;">
+        <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:20px;">Coverage across platforms</div>
+        <div class="coverage-grid">
+          <div class="coverage-cell">
+            <div class="icon">▶️</div>
+            <h4>YouTube</h4>
+            <p>Deepfake video, likeness rights, channel termination</p>
+          </div>
+          <div class="coverage-cell">
+            <div class="icon">🎵</div>
+            <h4>TikTok</h4>
+            <p>Synthetic content, impersonation accounts, cloned handles</p>
+          </div>
+          <div class="coverage-cell">
+            <div class="icon">📘</div>
+            <h4>Meta</h4>
+            <p>Facebook pages, Instagram accounts, ad-based fraud</p>
+          </div>
+          <div class="coverage-cell">
+            <div class="icon">✗</div>
+            <h4>X (Twitter)</h4>
+            <p>Impersonation accounts, synthetic-media posts</p>
+          </div>
+          <div class="coverage-cell">
+            <div class="icon">🌐</div>
+            <h4>Domains</h4>
+            <p>UDRP filings, registrar abuse, hosting provider notices</p>
+          </div>
+          <div class="coverage-cell">
+            <div class="icon">📸</div>
+            <h4>Other sites</h4>
+            <p>DMCA to hosting providers for custom infringing sites</p>
+          </div>
+          <div class="coverage-cell">
+            <div class="icon">📱</div>
+            <h4>App stores</h4>
+            <p>Fraudulent apps impersonating brands or individuals</p>
+          </div>
+          <div class="coverage-cell" style="background:var(--teal-l);border:none;">
+            <div class="icon">➕</div>
+            <h4 style="color:var(--teal-d);">Custom</h4>
+            <p style="color:var(--teal-d);">Enterprise clients get coverage tailored to their exposure.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE 4: Continuous Monitoring -->
+<section class="service-block" id="monitoring" style="background:var(--white);">
+  <div class="container">
+    <div class="service-layout reverse">
+      <div class="service-visual fade-up">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);">Monitoring dashboard</span>
+          <span class="badge badge-teal badge-dot">Live</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--bg);border-radius:var(--radius);border:1px solid var(--border);">
+            <div>
+              <div style="font-size:0.82rem;font-weight:600;color:var(--ink);">New match detected</div>
+              <div style="font-size:0.76rem;color:var(--ink3);margin-top:2px;">youtube.com · 14 min ago</div>
+            </div>
+            <span class="badge badge-amber">Pending</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--bg);border-radius:var(--radius);border:1px solid var(--border);">
+            <div>
+              <div style="font-size:0.82rem;font-weight:600;color:var(--ink);">Filing submitted</div>
+              <div style="font-size:0.76rem;color:var(--ink3);margin-top:2px;">tiktok.com · 2 hr ago</div>
+            </div>
+            <span class="badge badge-amber">In review</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--teal-l);border-radius:var(--radius);border:1px solid rgba(13,158,131,0.2);">
+            <div>
+              <div style="font-size:0.82rem;font-weight:600;color:var(--ink);">Removed</div>
+              <div style="font-size:0.76rem;color:var(--teal-d);margin-top:2px;">instagram.com · 5 hr ago</div>
+            </div>
+            <span class="badge badge-teal">✓ Removed</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--teal-l);border-radius:var(--radius);border:1px solid rgba(13,158,131,0.2);">
+            <div>
+              <div style="font-size:0.82rem;font-weight:600;color:var(--ink);">Removed</div>
+              <div style="font-size:0.76rem;color:var(--teal-d);margin-top:2px;">x.com · 8 hr ago</div>
+            </div>
+            <span class="badge badge-teal">✓ Removed</span>
+          </div>
+        </div>
+        <div style="margin-top:20px;padding:16px;background:var(--bg);border-radius:var(--radius);border:1px solid var(--border);display:flex;gap:20px;">
+          <div><div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-0.03em;" data-counter data-target="312" data-suffix="">312</div><div style="font-size:0.75rem;color:var(--ink3);">Removed this month</div></div>
+          <div><div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-0.03em;">4</div><div style="font-size:0.75rem;color:var(--ink3);">Pending</div></div>
+          <div><div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-0.03em;color:var(--teal);">94%</div><div style="font-size:0.75rem;color:var(--ink3);">Success rate</div></div>
+        </div>
+      </div>
+
+      <div class="service-content fade-up" style="transition-delay:0.1s;">
+        <span class="eyebrow eyebrow-teal">Service 04</span>
+        <h2>Continuous monitoring &amp; re-upload detection</h2>
+        <div class="rule"></div>
+        <p>Removing a video once isn't enough. Impersonators re-upload within hours. Our monitoring system runs continuously — comparing new content across platforms against your biometric signature, voice profile, and known impersonation patterns.</p>
+        <p style="margin-top:14px;">When a match is detected, a new filing is generated automatically and submitted without requiring your input. You see the action in your dashboard in real time. On Professional and Enterprise plans, monitoring runs 24/7 with no minimum scan interval.</p>
+        <ul style="list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:8px;">
+          <li style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--teal);font-weight:700;flex-shrink:0;">✓</span>Biometric and voice fingerprinting</li>
+          <li style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--teal);font-weight:700;flex-shrink:0;">✓</span>Cross-platform sweep (all major networks)</li>
+          <li style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--teal);font-weight:700;flex-shrink:0;">✓</span>Automated re-filing on re-upload</li>
+          <li style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--teal);font-weight:700;flex-shrink:0;">✓</span>Real-time dashboard + email alerts</li>
+        </ul>
+        <a href="pricing.html" class="btn-text btn" style="margin-top:28px;">Compare monitoring tiers →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--ink);padding:96px 0;">
+  <div class="container">
+    <div style="max-width:560px;">
+      <span class="eyebrow" style="color:rgba(255,255,255,0.35);">Start today</span>
+      <h2 style="color:white;margin-top:12px;">Send us a URL and we'll file — free.</h2>
+      <p style="color:rgba(255,255,255,0.5);margin-top:16px;font-size:0.95rem;">No contract required to begin. We file your first takedown, you review the outcome, then decide if you want ongoing coverage.</p>
+      <div style="display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;">
+        <a href="contact.html?intent=takedown" class="btn btn-teal btn-lg">Start free takedown →</a>
+        <a href="pricing.html" class="btn" style="background:transparent;color:white;border:1px solid rgba(255,255,255,0.25);border-radius:99px;padding:15px 32px;font-size:1rem;font-weight:600;">View pricing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><div class="footer-logo-mark">🛡</div>DeepGuard</div>
+        <p>Continuous deepfake and impersonation enforcement for public figures, institutions, and the teams that represent them.</p>
+        <div style="margin-top:20px;font-size:0.82rem;color:rgba(255,255,255,0.3);">Need help? <a href="mailto:hello@deepguard.io" style="color:rgba(255,255,255,0.55);">hello@deepguard.io</a></div>
+      </div>
+      <div class="footer-col"><h5>Platform</h5><a href="services.html">Deepfake Removal</a><a href="services.html#youtube">YouTube Likeness</a><a href="pricing.html">Pricing &amp; Plans</a></div>
+      <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html?intent=takedown">Start Free Takedown</a></div>
+      <div class="footer-col"><h5>Resources</h5><a href="contact.html?intent=takedown">Report a Violation</a><a href="#">Privacy Policy</a><a href="#">Service Agreement</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 DeepGuard · Not legal advice unless expressly retained · Results may vary by platform policy</p></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
